@@ -1,0 +1,22 @@
+.feed {
+    max-width: 75%;
+    padding: 150px;  
+    margin: auto;
+}
+
+.card {
+    background-color: var(--card-color);
+    margin-bottom: 10px;
+}
+
+.card-title {
+    color: white;
+}
+
+.card-subtitle {
+    color: var(--secondary-color);
+}
+
+.card-text {
+    color: white;
+}
