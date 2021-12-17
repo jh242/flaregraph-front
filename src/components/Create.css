@@ -5,22 +5,9 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.createButton:hover {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-}
-
-.createButton:focus {
-    background-color: var(--secondary-color);
-    border-color: var(--secondary-color);
-    outline: none;
 }
 
 .createModal {

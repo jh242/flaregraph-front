@@ -19,3 +19,18 @@
   font-size: 64px;
   color: var(--primary-color);
 }
+
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color) !important;
+  border-color: var(--secondary-color) !important;
+}
+
+.btn-primary:focus {
+  background-color: var(--secondary-color) !important;
+  border-color: var(--secondary-color) !important;
+}

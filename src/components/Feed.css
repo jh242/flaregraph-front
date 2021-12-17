@@ -20,3 +20,39 @@
 .card-text {
     color: white;
 }
+
+.sortButton {
+    position: fixed;
+    top: 7%;
+    right: 12%;
+}
+
+.dropdown-menu {
+    background-color: var(--bg-color);
+}
+
+.dropdown-item {
+    background-color: var(--bg-color);
+    color: white !important;
+    transition: ease-in-out 100ms color;
+}
+
+.dropdown-item:hover {
+    background-color: var(--card-color);
+}
+
+.dropdown-item:focus {
+    background-color: var(--primary-color);
+}
+
+.footerButtons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.footerButtons button {
+    background: transparent;
+    border: none;
+}

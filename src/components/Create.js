@@ -52,6 +52,7 @@ export default function Create() {
             <Form.Label>Title</Form.Label>
             <Form.Control
               type="text"
+              required
               onChange={(e) => {
                 setTitle(e.target.value);
               }}
@@ -59,6 +60,7 @@ export default function Create() {
             <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
+              required
               onChange={(e) => {
                 setUsername(e.target.value);
               }}
