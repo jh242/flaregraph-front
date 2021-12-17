@@ -21,6 +21,10 @@
     color: white;
 }
 
+.card img {
+    max-width: 100%;
+}
+
 .sortButton {
     position: fixed;
     top: 7%;
