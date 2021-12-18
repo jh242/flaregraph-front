@@ -1,4 +1,4 @@
-import { Button, Form, Modal } from "react-bootstrap";
+import { Alert, Button, Form, Modal } from "react-bootstrap";
 import { BsPlusLg } from "react-icons/bs";
 import { useState } from "react";
 import { EditorState, convertToRaw } from "draft-js";
@@ -13,6 +13,7 @@ export default function Create() {
   const [title, setTitle] = useState();
   const [username, setUsername] = useState();
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleEditorChange = (editorState) => {
     setEditorState(editorState);
@@ -37,12 +38,17 @@ export default function Create() {
 
     if (response.status === 201) {
       setCreating(false);
+      setShowAlert(true);
+      setTimeout(() => {setShowAlert(false)}, 5000)
     } else {
     }
   };
 
   return (
     <div>
+    <Alert className="notif" show={showAlert} variant="dark" dismissable>
+        Success! Your post as been submitted. You will see it after refreshing the page.
+    </Alert>
       <Modal dialogClassName="createModal" show={creating}>
         <Modal.Header>
           <Modal.Title>Create New Post</Modal.Title>

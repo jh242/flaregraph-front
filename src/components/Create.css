@@ -20,3 +20,11 @@
     border-radius: .25rem;
     min-height: 20vh;
 }
+
+.notif {
+    position: fixed;
+    z-index: 100;
+    top: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+}
