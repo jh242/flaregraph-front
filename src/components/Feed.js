@@ -12,15 +12,6 @@ import Form from "react-bootstrap/Form";
 function CommentList({ postId, refresh }) {
   const [comments, setComments] = useState([]);
 
-  const getComments = async () => {
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_WORKER}/post/${postId}/comments`
-    );
-
-    const data = await response.json();
-    setComments(JSON.parse(data));
-  };
-
   const handleSubmitComment = async (event) => {
     event.preventDefault();
 
@@ -48,8 +39,17 @@ function CommentList({ postId, refresh }) {
   };
 
   useEffect(() => {
+    const getComments = async () => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_WORKER}/post/${postId}/comments`
+      );
+
+      const data = await response.json();
+      setComments(JSON.parse(data));
+    };
+
     getComments();
-  });
+  }, [postId]);
 
   return (
     <div>
@@ -64,9 +64,19 @@ function CommentList({ postId, refresh }) {
       <form onSubmit={handleSubmitComment}>
         <Form.Group>
           <Form.Label className="whiteLabel">Username</Form.Label>
-          <Form.Control name="username" className="darkInput" type="text" required />
+          <Form.Control
+            name="username"
+            className="darkInput"
+            type="text"
+            required
+          />
           <Form.Label className="whiteLabel">Comment</Form.Label>
-          <Form.Control name="content" className="darkInput" type="text" required />
+          <Form.Control
+            name="content"
+            className="darkInput"
+            type="text"
+            required
+          />
           <Form.Control className="btn-primary submitButton" type="submit" />
         </Form.Group>
       </form>
@@ -128,7 +138,9 @@ function Post({ post, refresh }) {
             <span>{post.comments}</span>
           </button>
         </div>
-        {commenting ? <CommentList postId={post.postId} refresh={refresh} /> : null}
+        {commenting ? (
+          <CommentList postId={post.postId} refresh={refresh} />
+        ) : null}
       </Card.Footer>
     </Card>
   );
@@ -146,10 +158,10 @@ export default function Feed() {
       `${process.env.REACT_APP_BACKEND_WORKER}/posts`
     );
 
-    if(response.status === 200) {
-        const parsedPosts = await response.json();
-        parsedPosts.sort((a, b) => b.timestamp - a.timestamp);
-        setPosts(parsedPosts);
+    if (response.status === 200) {
+      const parsedPosts = await response.json();
+      parsedPosts.sort((a, b) => b.timestamp - a.timestamp);
+      setPosts(parsedPosts);
     }
 
     setLoading(false); // Maybe make another toast message here.
