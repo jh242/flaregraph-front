@@ -63,9 +63,9 @@ function CommentList({ postId, refresh }) {
       ))}
       <form onSubmit={handleSubmitComment}>
         <Form.Group>
-          <Form.Label>Username</Form.Label>
+          <Form.Label className="whiteLabel">Username</Form.Label>
           <Form.Control name="username" className="darkInput" type="text" required />
-          <Form.Label>Comment</Form.Label>
+          <Form.Label className="whiteLabel">Comment</Form.Label>
           <Form.Control name="content" className="darkInput" type="text" required />
           <Form.Control className="btn-primary submitButton" type="submit" />
         </Form.Group>
@@ -145,11 +145,14 @@ export default function Feed() {
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_WORKER}/posts`
     );
-    const parsedPosts = await response.json();
-    parsedPosts.sort((a, b) => b.timestamp - a.timestamp);
 
-    setPosts(parsedPosts);
-    setLoading(false);
+    if(response.status === 200) {
+        const parsedPosts = await response.json();
+        parsedPosts.sort((a, b) => b.timestamp - a.timestamp);
+        setPosts(parsedPosts);
+    }
+
+    setLoading(false); // Maybe make another toast message here.
   };
 
   useEffect(() => {
