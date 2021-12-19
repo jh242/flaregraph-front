@@ -12,6 +12,15 @@ import Form from "react-bootstrap/Form";
 function CommentList({ postId, refresh }) {
   const [comments, setComments] = useState([]);
 
+  const getComments = async () => {
+    const response = await fetch(
+      `${process.env.REACT_APP_BACKEND_WORKER}/post/${postId}/comments`
+    );
+
+    const data = await response.json();
+    setComments(JSON.parse(data));
+  };
+
   const handleSubmitComment = async (event) => {
     event.preventDefault();
 
@@ -34,22 +43,14 @@ function CommentList({ postId, refresh }) {
 
     if (response.status === 200) {
       event.target.reset();
+      getComments();
       refresh();
     }
   };
 
   useEffect(() => {
-    const getComments = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_WORKER}/post/${postId}/comments`
-      );
-
-      const data = await response.json();
-      setComments(JSON.parse(data));
-    };
-
     getComments();
-  }, [postId]);
+  }, []);
 
   return (
     <div>
